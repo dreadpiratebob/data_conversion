@@ -105,10 +105,11 @@ def weather_data_from_zip(building_typology:BuildingTypologies, zipcode:int):
   i = 0
   for line in station_lines:
     vals.append(line)
-    lat = float(vals[i][header_lat])
-    long = float(vals[i][header_long])
+    lat = float(vals[i][header_long])
+    long = float(vals[i][header_lat])
     
     dist = sqrt((lat - target_lat)**2 + (long - target_long)**2)
+    
     if min_dist is None or min_dist > dist:
       min_index = i
       min_dist = dist
@@ -130,7 +131,7 @@ def weather_data_from_zip(building_typology:BuildingTypologies, zipcode:int):
   
   filtered_typology_data =\
   {
-    'BuildingTypology': str(building_typology)[14:],
+    'BuildingTypology': str(building_typology)[19:],
     'WeatherFile': closest_weather_file,
     header_year: [],
     header_e_ae: [],

@@ -3,30 +3,25 @@
     <title>run a script</title>
     <script type="text/javascript" src="templates/ajax.js"></script>
     <script type="text/javascript">
-      var get_output = null;
+      var do_stuff = null;
       
       window.onload = function()
       {
-        get_output = (function()
+        do_stuff = (function()
         {
           return function()
           {
-            var query_params = "building_type=" + document.getElementById("building_type").value +
-                // get more parameter values here.
-                "&area=1325" +
-                "&zipcode=98112" +
-                "&electricity_consumption=12345.67" +
-                "&electricity_eui=42.0" +
-                "&gas_consumption=12345.67" +
-                "&gas_eui=1123.58";
+            var building_type_selector = document.getElementById("building_type");
             
-            var result = send_request("/get_output", "GET", query_params, false, undefined, function(response) { alert("error: " + response) });
+            // get more parameter values here.
+            // get_output's signature is function(building_type, area, zipcode, electricity_consumption, electricity_eui, gas_consumption, gas_eui).
+            var result = get_output(building_type_selector.value, 1325, 98112, 12345.67, 42.0, 12345.67, 1123.58);
             
             var result_div = document.getElementById("result");
             result_div.innerHTML = "latest result:<br>" + result.replaceAll(" ", "&nbsp;&nbsp;").replaceAll("\n", "<br />\n");
-          }
+          };
         })();
-      }
+      };
     </script>
   </head>
   <body style="background-color: #000000; color: #FFFFFF;">
@@ -37,7 +32,7 @@
       </select>
       <br />
       <!-- set more parameter values here. -->
-      <button type="button" onclick="get_output(); return false;">do a thing.</button>
+      <button type="button" onclick="do_stuff(); return false;">do a thing.</button>
     </form>
     <br />
     <div id="result"></div>

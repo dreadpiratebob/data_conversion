@@ -21,7 +21,7 @@ def ajax():
 @app.route('/get_output', methods=['GET'])
 def get_output():
   args = request.args
-
+  
   building_typology = BuildingTypologies(args.get("building_type"))
   area = float(args.get("area"))
   zipcode = int(args.get("zipcode"))
@@ -38,6 +38,13 @@ def get_output():
     content = output.read()
   
   return content
+
+@app.route('/favicon.ico')
+def get_favicon():
+  with open('templates/favicon.jpg', 'rb') as favicon:
+    contents = favicon.read()
+  
+  return contents
 
 if __name__ == '__main__':
   app.run()

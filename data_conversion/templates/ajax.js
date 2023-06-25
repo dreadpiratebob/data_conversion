@@ -144,3 +144,24 @@ function _response(div, params, on_load_fn, on_err_fn)
   
   _responses[_responses.length] = this;
 }
+
+
+var get_output = (function()
+{
+  return function(building_type, area, zipcode, electricity_consumption, electricity_eui, gas_consumption, gas_eui)
+  {
+    var query_params = "building_type=" + building_type +
+        // get more parameter values here.
+        "&area=" + area +
+        "&zipcode=" + zipcode +
+        "&electricity_consumption=" + electricity_consumption +
+        "&electricity_eui=" + electricity_eui +
+        "&gas_consumption=" + gas_consumption +
+        "&gas_eui=" + gas_eui;
+    
+    var result = send_request("/get_output", "GET", query_params, false, undefined, function(response) { alert("error: " + response) });
+    
+    var result_div = document.getElementById("result");
+    result_div.innerHTML = "latest result:<br>" + result.replaceAll(" ", "&nbsp;&nbsp;").replaceAll("\n", "<br />\n");
+  };
+})();

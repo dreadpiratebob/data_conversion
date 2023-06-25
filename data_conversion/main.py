@@ -13,7 +13,7 @@ def generate_output(building_typology:BuildingTypologies, area:float, zipcode:in
   result['ZipCode']                                = zipcode
   result['Electricity_Consumption']                = electricity_consumption
   result['FossilFuel_Consumption']                 = gas_consumption
-  result['WeatherFile']                            = weather_data['BuildingTypology']
+  result['WeatherFile']                            = weather_data['WeatherFile']
   result['Electricity_EUI']                        = electricity_eui
   result['FossilFuel_EUI']                         = gas_eui
   result['RefElectricity_EUI']                     = weather_data['RefElectricity_EUI']
