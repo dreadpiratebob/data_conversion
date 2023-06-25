@@ -30,7 +30,6 @@ def user_input():
       
       key = argv[:argv.index('=')].replace(" ", "").replace("_", "").lower()
       val = argv[argv.index('=')+1:]
-      print(key + ": " + val)
       if key == "buildingtype":
         try:
           building_type = building_typology_list[int(val)]
