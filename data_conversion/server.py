@@ -41,7 +41,7 @@ def get_output():
 
 @app.route('/favicon.ico')
 def get_favicon():
-  with open('templates/favicon.jpg', 'rb') as favicon:
+  with open('templates/favicon.png', 'rb') as favicon:
     contents = favicon.read()
   
   return contents
